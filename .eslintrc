@@ -1,0 +1,225 @@
+{
+  "root": true,
+  "settings": {
+    "react": {
+      "createClass": "createReactClass",
+      "pragma": "React",
+      "version": "detect",
+      "flowVersion": "0.53"
+    },
+    "propWrapperFunctions": [
+      "forbidExtraProps",
+      {
+        "property": "freeze",
+        "object": "Object"
+      },
+      {
+        "property": "myFavoriteWrapper"
+      }
+    ],
+    "linkComponents": [
+      "Hyperlink",
+      {
+        "name": "Link",
+        "linkAttribute": "to"
+      }
+    ]
+  },
+  "plugins": [
+    "react"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": true,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true,
+      "globalReturn": false
+    }
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "no-alert": 0,
+    "indent": [
+      "warn",
+      2,
+      {
+        "SwitchCase": 1,
+        "VariableDeclarator": 1,
+        "MemberExpression": 1
+        // "ignoredNodes": [
+        //   "TemplateLiteral"
+        // ]
+      }
+    ],
+    "linebreak-style": 0,
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "semi": [
+      2,
+      "always"
+    ],
+    "getter-return": [
+      "off"
+    ],
+    "default-case": [
+      "warn",
+      {
+        "commentPattern": "^skip\\sdefault"
+      }
+    ],
+    "no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": false
+      }
+    ],
+    "jsx-quotes": [
+      "error",
+      "prefer-single"
+    ],
+    "space-in-parens": [
+      "warn",
+      "never"
+    ],
+    "template-curly-spacing": [
+      "warn",
+      "always"
+    ],
+    "array-bracket-spacing": [
+      "warn",
+      "never"
+    ],
+    "object-curly-spacing": [
+      "warn",
+      "always"
+    ],
+    "react/react-in-jsx-scope": 0,
+    "react/no-unescaped-entities": 0,
+    "react/jsx-no-target-blank": 0,
+    "react/jsx-closing-bracket-location": [
+      1,
+      {
+        "selfClosing": "after-props",
+        "nonEmpty": "after-props"
+      }
+    ],
+    "react/display-name": 0,
+    "react/jsx-indent": [
+      "warn",
+      2
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "react/jsx-indent-props": [
+      "error",
+      2
+    ],
+    "react/jsx-curly-spacing": [
+      "warn",
+      {
+        "when": "always",
+        "attributes": {
+          "allowMultiline": true
+        },
+        "children": true
+      }
+    ],
+    "react/jsx-tag-spacing": [
+      "warn",
+      {
+        "beforeSelfClosing": "always"
+      }
+    ],
+    "react/jsx-max-props-per-line": [
+      "warn",
+      {
+        "maximum": 1
+      }
+    ],
+    "react/jsx-first-prop-new-line": [
+      "warn",
+      "multiline"
+    ],
+    // "jsx-a11y/anchor-is-valid": [
+    //   "error",
+    //   {
+    //     "components": [
+    //       "Link"
+    //     ],
+    //     "specialLink": [
+    //       "hrefLeft",
+    //       "hrefRight"
+    //     ],
+    //     "aspects": [
+    //       "noHref",
+    //       "invalidHref",
+    //       "preferButton"
+    //     ]
+    //   }
+    // ],
+    "react/prop-types": [
+      0
+    ],
+    // "prefer-template": 0,
+    "import/prefer-default-export": [
+      0
+    ],
+    "arrow-parens": [
+      1,
+      "as-needed"
+    ],
+    "class-methods-use-this": [
+      0
+    ],
+    // "arrow-body-style": [
+    //   "warn",
+    //   "as-needed",
+    //   {
+    //     "requireReturnForObjectLiteral": true
+    //   }
+    // ],
+    "arrow-body-style": 0,
+    "no-lonely-if": 0,
+    "curly": [
+      "error",
+      "multi-or-nest"
+    ],
+    "operator-linebreak": [
+      "warn",
+      "after",
+      {
+        "overrides": {
+          "?": "before",
+          ":": "before"
+        }
+      }
+    ]
+  },
+  "globals": {
+    "React": "writable"
+  }
+}
