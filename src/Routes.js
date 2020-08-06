@@ -23,7 +23,7 @@ const Routes = () => {
           exact
           component={ Signup } />
         <PrivateRoute
-          path='/dashboard'
+          path='/user/dashboard'
           exact
           component={ Dashboard } />
       </Switch>
