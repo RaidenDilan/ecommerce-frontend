@@ -15,24 +15,26 @@ const Shop = () => {
   const [filteredResults, setFilteredResults] = useState([]);
 
   const init = () => {
-    getCategories().then(data => {
-      if (data.error) setError(data.error);
-      else setCategories(data);
-    });
+    getCategories()
+      .then(data => {
+        if (data.error) setError(data.error);
+        else setCategories(data);
+      });
   };
 
-  const loadFilterResults = newFilters => {
+  const loadFilteredResults = newFilters => {
     // console.log(newFilters);
     getFilteredProducts(skip, limit, newFilters)
       .then(data => {
+        console.log('data', data);
         if (data.error) setError(data.error);
-        else setFilteredResults(data);
+        else setFilteredResults(data.data);
       });
   };
 
   useEffect(() => {
     init();
-    loadFilterResults(skip, limit, myFilters.filters);
+    loadFilteredResults(skip, limit, myFilters.filters);
   }, []);
 
   const handleFilters = (filters, filterBy) => {
@@ -45,7 +47,7 @@ const Shop = () => {
       newFilters.filters[filterBy] = priceValues;
     }
 
-    loadFilterResults(myFilters.filters);
+    loadFilteredResults(myFilters.filters);
     setMyFilters(newFilters);
   };
 
@@ -79,7 +81,16 @@ const Shop = () => {
           </div>
         </div>
 
-        <div className='col-8'>{ JSON.stringify(filteredResults) }</div>
+        <div className='col-8'>
+          <h2 className='mb-4'>Products</h2>
+          <div className='row'>
+            { filteredResults.map((product, i) => (
+              <Card
+                key={ i }
+                product={ product } />
+            )) }
+          </div>
+        </div>
       </div>
     </Layout>
   );
