@@ -5,8 +5,8 @@ import { signin, authenticate } from '../auth';
 
 const Signin = () => {
   const [values, setValues] = useState({
-    email: '',
-    password: '',
+    email: 'raiden18@me.com',
+    password: 'raiden1',
     error: '',
     loading: false,
     redirectToReferrer: false
@@ -21,17 +21,11 @@ const Signin = () => {
   const clickSubmit = event => {
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
-    signin({ email, password }).then(data => {
-      if (data.error) setValues({ ...values, error: data.error, loading: false });
-      else {
-        authenticate(data, () => {
-          setValues({
-            ...values,
-            redirectToReferrer: true
-          });
-        });
-      }
-    });
+    signin({ email, password })
+      .then(data => {
+        if (data.error) setValues({ ...values, error: data.error, loading: false });
+        else authenticate(data, () => setValues({ ...values, redirectToReferrer: true }));
+      });
   };
 
   const signInForm = () => (
@@ -69,16 +63,13 @@ const Signin = () => {
     </div>
   );
 
-  const showLoading = () =>
-    loading && (
-      <div className='alert alert-info'>
-        <h2>Loading...</h2>
-      </div>
-    );
+  const showLoading = () => loading && (
+    <div className='alert alert-info'>
+      <h2>Loading...</h2>
+    </div>
+  );
 
-  const redirectUser = () => {
-    if (redirectToReferrer) return <Redirect to='/' />;
-  };
+  const redirectUser = () => (redirectToReferrer && <Redirect to='/' />);
 
   return (
     <Layout

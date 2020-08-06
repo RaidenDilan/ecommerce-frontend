@@ -21,10 +21,11 @@ const Signup = () => {
   const clickSubmit = event => {
     event.preventDefault();
     setValues({ ...values, error: false });
-    signup({ name, email, password }).then(data => {
-      if (data.error) setValues({ ...values, error: data.error, success: false });
-      else setValues({ ...values, name: '', email: '', password: '', error: '', success: true });
-    });
+    signup({ name, email, password })
+      .then(data => {
+        if (data.error) setValues({ ...values, error: data.error, success: false });
+        else setValues({ ...values, name: '', email: '', password: '', error: '', success: true });
+      });
   };
 
   const signUpForm = () => (
