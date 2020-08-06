@@ -5,9 +5,9 @@ import { signup } from '../auth';
 
 const Signup = () => {
   const [values, setValues] = useState({
-    name: '',
-    email: '',
-    password: '',
+    name: 'Raiden Dilan',
+    email: 'raidendilan@gmail.com',
+    password: 'raiden1',
     error: '',
     success: false
   });
