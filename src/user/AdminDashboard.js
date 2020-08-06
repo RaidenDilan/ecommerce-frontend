@@ -4,6 +4,7 @@ import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
 
 const AdminDashboard = () => {
+  // eslint-disable-next-line no-unused-vars
   const { user: { _id, name, email, role } } = isAuthenticated();
 
   const adminLinks = () => {
