@@ -10,7 +10,7 @@ const Cart = () => {
 
   useEffect(() => {
     setItems(getCart());
-  }, []);
+  }, [items]); // execute useEffect when 'items' changes. <<<----------------------------------------------
 
   const showItems = items => {
     return (

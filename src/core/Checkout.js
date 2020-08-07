@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getBraintreeClientToken, processPayment } from './apiCore';
-// import Card from './Card';
+import { getProducts, getBraintreeClientToken, processPayment } from './apiCore';
+import { emptyCart } from './cartHelpers';
+import Card from './Card';
 import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
 import 'braintree-web';
@@ -23,13 +24,12 @@ const Checkout = ({ products }) => {
       .then(data => {
         if (data.error) setData({ ...data, error: data.error });
         else setData({ clientToken: data.clientToken });
-        // else setData({ ...data, clientToken: data.clientToken });
       });
   };
 
   useEffect(() => {
     getToken(userId, token);
-  }, [userId, token]);
+  }, []);
 
   const getTotal = () => {
     return products.reduce((currentValue, nextValue) => {
@@ -51,9 +51,6 @@ const Checkout = ({ products }) => {
     // send the nonce to your server
     // nonce = data.instance.requestPaymentMethod()
     let nonce;
-    
-    
-    // eslint-disable-next-line no-unused-vars
     let getNonce = data.instance
       .requestPaymentMethod()
       .then(data => {
@@ -61,7 +58,11 @@ const Checkout = ({ products }) => {
         nonce = data.nonce;
         // once you have nonce (card type, card number) send nonce as 'paymentMethodNonce'
         // and also total to be charged
-        // console.log("send nonce and total to process: ", nonce, getTotal(products));
+        // console.log(
+        //     "send nonce and total to process: ",
+        //     nonce,
+        //     getTotal(products)
+        // );
         const paymentData = {
           paymentMethodNonce: nonce,
           amount: getTotal(products)
@@ -69,9 +70,11 @@ const Checkout = ({ products }) => {
 
         processPayment(userId, token, paymentData)
           .then(response => {
-            // console.log(response);
+            // console.log(response
             setData({ ...data, success: response.success });
-            // empty cart
+            emptyCart(() => {
+              console.log('payment success and empty cart');
+            });
             // create order
           })
           .catch(error => console.log(error));

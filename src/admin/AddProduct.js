@@ -26,15 +26,12 @@ const AddProduct = () => {
     description,
     price,
     categories,
-    // eslint-disable-next-line no-unused-vars
     category,
-    // eslint-disable-next-line no-unused-vars
     shipping,
     quantity,
     loading,
     error,
     createdProduct,
-    // eslint-disable-next-line no-unused-vars
     redirectToProfile,
     formData
   } = values;
@@ -56,7 +53,6 @@ const AddProduct = () => {
 
   useEffect(() => {
     init();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = name => event => {

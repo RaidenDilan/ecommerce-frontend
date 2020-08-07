@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 const RadioBox = ({ prices, handleFilters }) => {
-  // eslint-disable-next-line no-unused-vars
   const [value, setValue] = useState(0);
 
   const handleChange = event => {

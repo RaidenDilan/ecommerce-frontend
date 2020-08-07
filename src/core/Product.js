@@ -6,7 +6,6 @@ import Card from './Card';
 const Product = props => {
   const [product, setProduct] = useState({});
   const [relatedProduct, setRelatedProduct] = useState([]);
-  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(false);
 
   const loadSingleProduct = productId => {
