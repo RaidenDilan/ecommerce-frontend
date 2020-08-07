@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getProducts, getBraintreeClientToken } from './apiCore';
-import Card from './Card';
+import { getBraintreeClientToken, processPayment } from './apiCore';
+// import Card from './Card';
 import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
 import 'braintree-web';
@@ -19,18 +19,17 @@ const Checkout = ({ products }) => {
   const token = isAuthenticated() && isAuthenticated().token;
 
   const getToken = (userId, token) => {
-    getBraintreeClientToken(userId, token).then(data => {
-      if (data.error) {
-        setData({ ...data, error: data.error });
-      } else {
-        setData({ ...data, clientToken: data.clientToken });
-      }
-    });
+    getBraintreeClientToken(userId, token)
+      .then(data => {
+        if (data.error) setData({ ...data, error: data.error });
+        else setData({ clientToken: data.clientToken });
+        // else setData({ ...data, clientToken: data.clientToken });
+      });
   };
 
   useEffect(() => {
     getToken(userId, token);
-  }, []);
+  }, [userId, token]);
 
   const getTotal = () => {
     return products.reduce((currentValue, nextValue) => {
@@ -39,34 +38,46 @@ const Checkout = ({ products }) => {
   };
 
   const showCheckout = () => {
-    return isAuthenticated() ? (
-      <div>{ showDropIn() }</div>
-    ) : (
-      <Link to='/signin'>
-        <button className='btn btn-primary'>Sign in to checkout</button>
-      </Link>
-    );
+    return isAuthenticated()
+      ? (<div>{ showDropIn() }</div>)
+      : (
+        <Link to='/signin'>
+          <button className='btn btn-primary'>Sign in to checkout</button>
+        </Link>
+      );
   };
 
   const buy = () => {
     // send the nonce to your server
     // nonce = data.instance.requestPaymentMethod()
     let nonce;
+    
+    
+    // eslint-disable-next-line no-unused-vars
     let getNonce = data.instance
       .requestPaymentMethod()
       .then(data => {
-        console.log(data);
+        // console.log(data);
         nonce = data.nonce;
         // once you have nonce (card type, card number) send nonce as 'paymentMethodNonce'
         // and also total to be charged
-        console.log(
-          'send nonce and total to process: ',
-          nonce,
-          getTotal(products)
-        );
+        // console.log("send nonce and total to process: ", nonce, getTotal(products));
+        const paymentData = {
+          paymentMethodNonce: nonce,
+          amount: getTotal(products)
+        };
+
+        processPayment(userId, token, paymentData)
+          .then(response => {
+            // console.log(response);
+            setData({ ...data, success: response.success });
+            // empty cart
+            // create order
+          })
+          .catch(error => console.log(error));
       })
       .catch(error => {
-        console.log('dropin error: ', error);
+        // console.log("dropin error: ", error);
         setData({ ...data, error: error.message });
       });
   };
@@ -98,9 +109,18 @@ const Checkout = ({ products }) => {
     </div>
   );
 
+  const showSuccess = success => (
+    <div
+      className='alert alert-info'
+      style={ { display: success ? '' : 'none' } }>
+      Thanks! Your payment was successful!
+    </div>
+  );
+
   return (
     <div>
       <h2>Total: ${ getTotal() }</h2>
+      { showSuccess(data.success) }
       { showError(data.error) }
       { showCheckout() }
     </div>

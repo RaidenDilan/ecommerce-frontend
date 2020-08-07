@@ -47,13 +47,17 @@
     }
   },
   "plugins": [
-    "react"
+    "react",
+    "react-hooks"
   ],
   "extends": [
     "eslint:recommended", // "eslint:all",
-    "plugin:react/recommended" // "plugin:react/all"
+    "plugin:react/recommended", // "plugin:react/all"
+    "plugin:react-hooks/recommended"
   ],
   "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "no-alert": 0,
     "indent": [
       "warn",

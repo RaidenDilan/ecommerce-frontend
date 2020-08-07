@@ -26,32 +26,37 @@ const AddProduct = () => {
     description,
     price,
     categories,
-    // category,
-    // shipping,
+    // eslint-disable-next-line no-unused-vars
+    category,
+    // eslint-disable-next-line no-unused-vars
+    shipping,
     quantity,
     loading,
     error,
     createdProduct,
-    // redirectToProfile,
+    // eslint-disable-next-line no-unused-vars
+    redirectToProfile,
     formData
   } = values;
 
   // load categories and set form data
   const init = () => {
-    getCategories().then(data => {
-      if (data.error) setValues({ ...values, error: data.error });
-      else {
-        setValues({
-          ...values,
-          categories: data,
-          formData: new FormData()
-        });
-      }
-    });
+    getCategories()
+      .then(data => {
+        if (data.error) setValues({ ...values, error: data.error });
+        else {
+          setValues({
+            ...values,
+            categories: data,
+            formData: new FormData()
+          });
+        }
+      });
   };
 
   useEffect(() => {
     init();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = name => event => {

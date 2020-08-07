@@ -9,7 +9,9 @@ import { prices } from './fixedPrices';
 const Shop = () => {
   const [myFilters, setMyFilters] = useState({ filters: { category: [], price: [] } });
   const [categories, setCategories] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [limit, setlimit] = useState(6);
   const [skip, setSkip] = useState(0);
   const [size, setSize] = useState(0);
@@ -66,8 +68,9 @@ const Shop = () => {
   useEffect(() => {
     init();
     loadFilteredResults(skip, limit, myFilters.filters);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  
   const handleFilters = (filters, filterBy) => {
     // console.log("SHOP", filters, filterBy);
     const newFilters = { ...myFilters };
