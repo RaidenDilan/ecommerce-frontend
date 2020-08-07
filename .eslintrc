@@ -1,5 +1,5 @@
 {
-  "root": true,
+  // "root": true,
   "env": {
     "browser": true,
     "es6": true,
@@ -211,8 +211,12 @@
     "arrow-body-style": 0,
     "no-lonely-if": 0,
     "curly": [
-      "error",
+      "off",
       "multi-or-nest"
+      // "all"
+      // "multi-line"
+      // "multi"
+      // "consistent"
     ],
     "operator-linebreak": [
       "warn",
