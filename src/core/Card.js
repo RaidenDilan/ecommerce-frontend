@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import ShowImage from './ShowImage';
 import moment from 'moment';
-import { addItem, updateItem } from './cartHelpers';
+import { addItem, updateItem , removeItem } from './cartHelpers';
 
 const Card = ({
   product,
   showViewProductButton = true,
   showAddToCartButton = true,
-  cartUpdate = false
+  cartUpdate = false,
+  showRemoveProductButton = false
 }) => {
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
@@ -49,6 +50,18 @@ const Card = ({
     );
   };
 
+  const showRemoveButton = showRemoveProductButton => {
+    return (
+      showRemoveProductButton && (
+        <button
+          onClick={ () => removeItem(product._id) }
+          className='btn btn-outline-danger mt-2 mb-2'>
+          Remove Product
+        </button>
+      )
+    );
+  };
+
   const showStock = quantity => {
     return quantity > 0
       ? (<span className='badge badge-primary badge-pill'>In Stock</span>)
@@ -77,6 +90,7 @@ const Card = ({
       </div>
     </div>;
   };
+  
   return (
     <div className='card'>
       <div className='card-header name'>{ product.name }</div>
@@ -93,6 +107,7 @@ const Card = ({
         <br />
         { showViewButton(showViewProductButton) }
         { showAddToCart(showAddToCartButton) }
+        { showRemoveButton(showRemoveProductButton) }
         { showCartUpdateOptions(cartUpdate) }
       </div>
     </div>

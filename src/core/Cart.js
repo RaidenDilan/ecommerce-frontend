@@ -9,7 +9,7 @@ const Cart = () => {
 
   useEffect(() => {
     setItems(getCart());
-  }, []);
+  }, [items]); // execute useEffect when there is a cahnge in items.
 
   const showItems = items => {
     return (
@@ -21,7 +21,8 @@ const Cart = () => {
             key={ i }
             product={ product }
             showAddToCartButton={ false }
-            cartUpdate={ true } />
+            cartUpdate={ true }
+            showRemoveProductButton={ true } />
         )) }
       </div>
     );
