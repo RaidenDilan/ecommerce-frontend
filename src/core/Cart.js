@@ -7,10 +7,11 @@ import Checkout from './Checkout';
 
 const Cart = () => {
   const [items, setItems] = useState([]);
+  const [run, setRun] = useState(false);
 
   useEffect(() => {
     setItems(getCart());
-  }, [items]); // execute useEffect when 'items' changes. <<<----------------------------------------------
+  }, [run]); // 'items' removed due to rerendering of component - tbc...
 
   const showItems = items => {
     return (
@@ -23,7 +24,9 @@ const Cart = () => {
             product={ product }
             showAddToCartButton={ false }
             cartUpdate={ true }
-            showRemoveProductButton={ true } />
+            showRemoveProductButton={ true }
+            setRun={ setRun }
+            run={ run } />
         )) }
       </div>
     );
@@ -48,7 +51,10 @@ const Cart = () => {
         <div className='col-6'>
           <h2 className='mb-4'>Your cart summary</h2>
           <hr />
-          <Checkout products={ items } />
+          <Checkout
+            products={ items }
+            setRun={ setRun }
+            run={ run } />
         </div>
       </div>
     </Layout>

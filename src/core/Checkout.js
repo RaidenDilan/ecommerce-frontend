@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import 'braintree-web';
 import DropIn from 'braintree-web-drop-in-react';
 
-const Checkout = ({ products }) => {
+const Checkout = ({ products, setRun = f => f, run = undefined }) => {
   const [data, setData] = useState({
     success: false,
     clientToken: null,
@@ -73,6 +73,7 @@ const Checkout = ({ products }) => {
             // console.log(response
             setData({ ...data, success: response.success });
             emptyCart(() => {
+              setRun(!run); // run useEffect in parent Cart
               console.log('payment success and empty cart');
             });
             // create order
