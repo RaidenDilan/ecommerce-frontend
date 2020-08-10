@@ -11,7 +11,7 @@ const Cart = () => {
 
   useEffect(() => {
     setItems(getCart());
-  }, [run]); // 'items' removed due to rerendering of component - tbc...
+  }, [run]); // 'items' removed due to re-rendering of component.
 
   const showItems = items => {
     return (

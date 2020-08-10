@@ -29,7 +29,7 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
 
   useEffect(() => {
     getToken(userId, token);
-  }, []);
+  }, [userId, token]);
 
   const handleAddress = event => {
     setData({ ...data, address: event.target.value });
@@ -93,9 +93,10 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
             };
 
             createOrder(userId, token, createOrderData)
-              .then(res => {
+              .then(response => {
                 emptyCart(() => {
-                  console.log('payment success and empty cart');
+                  setRun(!run); // run useEffect in parent Cart
+                  console.log('payment success and empty cart', response);
                   setData({ loading: false, success: true });
                 });
               })
