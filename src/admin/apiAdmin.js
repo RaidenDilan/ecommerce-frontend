@@ -114,9 +114,6 @@ export const updateProduct = (productId, userId, token, product) => {
     },
     body: product
   })
-    .then(response => {
-      console.log('response --->', response);
-      return response.json();
-    })
+    .then(response => response.json())
     .catch(err => console.log(err));
 };
