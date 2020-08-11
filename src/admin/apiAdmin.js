@@ -80,7 +80,7 @@ export const updateOrderStatus = (userId, token, orderId, status) => {
  */
 
 export const getProducts = () => {
-  return fetch(`${ API }/products`, { method: 'GET' })
+  return fetch(`${ API }/products?limit=100`, { method: 'GET' })
     .then(response => response.json())
     .catch(err => console.log(err));
 };
