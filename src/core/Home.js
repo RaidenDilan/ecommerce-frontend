@@ -30,7 +30,7 @@ const Home = () => {
 
   return (
     <Layout
-      title='Home Page'
+      title='FullStack React Node MongoDB Ecommerce App'
       description='Node React E-commerce App'
       className='container-fluid'>
       <Search />
