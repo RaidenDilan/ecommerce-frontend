@@ -80,7 +80,8 @@ export const updateOrderStatus = (userId, token, orderId, status) => {
  */
 
 export const getProducts = () => {
-  return fetch(`${ API }/products?limit=100`, { method: 'GET' })
+  // return fetch(`${ API }/products?limit=100`, { method: 'GET' })
+  return fetch(`${ API }/products?limit=undefined`, { method: 'GET' })
     .then(response => response.json())
     .catch(err => console.log(err));
 };
@@ -113,6 +114,9 @@ export const updateProduct = (productId, userId, token, product) => {
     },
     body: product
   })
-    .then(response => response.json())
+    .then(response => {
+      console.log('response --->', response);
+      return response.json();
+    })
     .catch(err => console.log(err));
 };
