@@ -9,6 +9,9 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js src/**/*.jsx"
   },
+  "engines": {
+    "node": "14"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
