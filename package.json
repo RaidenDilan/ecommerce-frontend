@@ -10,7 +10,9 @@
     "lint": "eslint src/**/*.js src/**/*.jsx"
   },
   "engines": {
-    "node": "14"
+    "node": "14",
+    "npm": "6",
+    "yarn": "1.22.10"
   },
   "browserslist": {
     "production": [
