@@ -12,7 +12,7 @@
   "engines": {
     "node": "14",
     "npm": "6",
-    "yarn": "1.22.10"
+    "yarn": "1.x"
   },
   "browserslist": {
     "production": [
