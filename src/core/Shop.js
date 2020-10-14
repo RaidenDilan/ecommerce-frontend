@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Layout from './Layout';
 import Card from './Card';
 import { getCategories, getFilteredProducts } from './apiCore';
@@ -9,7 +9,9 @@ import { prices } from './fixedPrices';
 const Shop = () => {
   const [myFilters, setMyFilters] = useState({ filters: { category: [], price: [] } });
   const [categories, setCategories] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [limit, setlimit] = useState(6);
   const [skip, setSkip] = useState(0);
   const [size, setSize] = useState(0);
@@ -23,7 +25,7 @@ const Shop = () => {
       });
   };
 
-  const loadFilteredResults = newFilters => {
+  const loadFilteredResults = useCallback(newFilters => {
     // console.log(newFilters);
     getFilteredProducts(skip, limit, newFilters)
       .then(data => {
@@ -34,7 +36,7 @@ const Shop = () => {
           setSkip(0);
         }
       });
-  };
+  }, [limit, skip]);
 
   const loadMore = () => {
     let toSkip = skip + limit;
@@ -66,6 +68,7 @@ const Shop = () => {
   useEffect(() => {
     init();
     loadFilteredResults(skip, limit, myFilters.filters);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
   const handleFilters = (filters, filterBy) => {

@@ -27,12 +27,10 @@ const Search = () => {
   const searchData = () => {
     // console.log(search, category);
     if (search) {
-      list({ search: search || undefined, category: category }).then(
-        response => {
-          if (response.error) console.log(response.error);
-          else setData({ ...data, results: response, searched: true });
-        }
-      );
+      list({ search: search || undefined, category: category }).then(response => {
+        if (response.error) console.log(response.error);
+        else setData({ ...data, results: response, searched: true });
+      });
     }
   };
 
@@ -58,9 +56,13 @@ const Search = () => {
         </h2>
         <div className='row'>
           { results.map((product, i) => (
-            <Card
-              key={ i }
-              product={ product } />
+            <div
+              className='col-4 mb-3'
+              key={ i }>
+              <Card
+                product={ product } />
+            </div>
+
           )) }
         </div>
       </div>

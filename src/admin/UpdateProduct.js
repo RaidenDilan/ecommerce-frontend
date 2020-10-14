@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { getProduct, getCategories, updateProduct } from './apiAdmin';
 
 const UpdateProduct = ({ match }) => {
@@ -27,7 +27,9 @@ const UpdateProduct = ({ match }) => {
     description,
     price,
     // categories,
+    // eslint-disable-next-line no-unused-vars
     category,
+    // eslint-disable-next-line no-unused-vars
     shipping,
     quantity,
     loading,
@@ -76,6 +78,7 @@ const UpdateProduct = ({ match }) => {
 
   useEffect(() => {
     init(match.params.productId);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = name => event => {

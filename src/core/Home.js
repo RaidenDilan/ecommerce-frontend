@@ -7,20 +7,23 @@ import Search from './Search';
 const Home = () => {
   const [productsBySell, setProductsBySell] = useState([]);
   const [productsByArrival, setProductsByArrival] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(false);
 
   const loadProductsBySell = () => {
-    getProducts('sold').then(data => {
-      if (data.error) setError(data.error);
-      else setProductsBySell(data);
-    });
+    getProducts('sold')
+      .then(data => {
+        if (data.error) setError(data.error);
+        else setProductsBySell(data);
+      });
   };
 
   const loadProductsByArrival = () => {
-    getProducts('createdAt').then(data => {
-      if (data.error) setError(data.error);
-      else setProductsByArrival(data);
-    });
+    getProducts('createdAt')
+      .then(data => {
+        if (data.error) setError(data.error);
+        else setProductsByArrival(data);
+      });
   };
 
   useEffect(() => {
@@ -45,7 +48,6 @@ const Home = () => {
           </div>
         )) }
       </div>
-
       <h2 className='mb-4'>Best Sellers</h2>
       <div className='row'>
         { productsBySell.map((product, i) => (

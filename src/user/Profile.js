@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { read, update, updateUser } from './apiUser';
 
 const Profile = ({ match }) => { // destructured from props or from our Router
@@ -14,6 +14,7 @@ const Profile = ({ match }) => { // destructured from props or from our Router
   });
 
   const { token } = isAuthenticated();
+  // eslint-disable-next-line no-unused-vars
   const { name, email, password, error, success } = values;
 
   const init = userId => {
@@ -31,6 +32,7 @@ const Profile = ({ match }) => { // destructured from props or from our Router
 
   useEffect(() => {
     init(match.params.userId);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // HOC

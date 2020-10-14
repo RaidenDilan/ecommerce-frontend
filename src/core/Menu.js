@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { signout, isAuthenticated } from '../auth';
-import { itemTotal } from './cartHelpers';
+import { itemTotal } from './CartHelpers';
 
 const isActive = (history, path) => {
   if (history.location.pathname === path) return { color: '#ff9900' };

@@ -52,8 +52,8 @@
   ],
   "extends": [
     "eslint:recommended", // "eslint:all",
-    "plugin:react/recommended", // "plugin:react/all"
-    "plugin:react-hooks/recommended"
+    "plugin:react/recommended" // "plugin:react/all"
+    // "plugin:react-hooks/recommended"
   ],
   "rules": {
     "react-hooks/rules-of-hooks": "error",

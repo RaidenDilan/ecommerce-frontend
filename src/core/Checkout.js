@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getBraintreeClientToken, processPayment, createOrder } from './apiCore';
-import { emptyCart } from './cartHelpers';
+import { emptyCart } from './CartHelpers';
 // import Card from './Card';
 import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
@@ -58,8 +58,8 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
     // send the nonce to your server
     // nonce = data.instance.requestPaymentMethod()
     let nonce;
-    let getNonce = data.instance
-      .requestPaymentMethod()
+    // eslint-disable-next-line no-unused-vars
+    let getNonce = data.instance.requestPaymentMethod()
       .then(data => {
         // console.log(data);
         nonce = data.nonce;
