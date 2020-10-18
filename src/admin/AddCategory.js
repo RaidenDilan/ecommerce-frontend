@@ -31,7 +31,7 @@ const AddCategory = () => {
     });
   };
 
-  const newCategoryFom = () => (
+  const newCategoryForm = () => (
     <form onSubmit={ clickSubmit }>
       <div className='form-group'>
         <label className='text-muted'>Name</label>
@@ -73,7 +73,7 @@ const AddCategory = () => {
         <div className='col-md-8 offset-md-2'>
           { showSuccess() }
           { showError() }
-          { newCategoryFom() }
+          { newCategoryForm() }
           { goBack() }
         </div>
       </div>
